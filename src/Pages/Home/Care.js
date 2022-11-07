@@ -1,5 +1,8 @@
 import React from 'react';
 import mind from '../../assets/mind.jpg';
+import img1 from '../../assets/1.png';
+import img2 from '../../assets/2.png';
+import img3 from '../../assets/3.png';
 const Care = () => {
     return (
       <div>
@@ -25,6 +28,11 @@ const Care = () => {
                   yourself into stress, anxiety, and fear. behavioral health
                   practice with a focus on your mental health and well-being.
                 </p>
+                <div className='flex my-3'>
+                    <img src={img1} alt="" />
+                    <img src={img2} alt="" />
+                    <img src={img3} alt="" />
+                </div>
               </div>
               <div className="flex flex-col items-center md:flex-row">
                 
@@ -33,7 +41,7 @@ const Care = () => {
                   aria-label=""
                   className="inline-flex items-center font-semibold btn bg-color-a border-0"
                 >
-                  View My Services
+                  See My Services
                 </a>
               </div>
             </div>
