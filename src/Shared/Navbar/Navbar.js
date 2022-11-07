@@ -1,10 +1,21 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import logo from '../../assets/logo.png'
 import { AuthContext } from '../../context/AuthProvider';
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const {user} = useContext(AuthContext);
+    const { user, logOutUser } = useContext(AuthContext);
+    const navigate = useNavigate();
+    //logout
+    const handalLogOut = ()=> {
+      logOutUser()
+      .then(()=>{
+        navigate('/');
+        toast.warning('LogOut');
+      })
+      .catch(err=> toast.error(err.message));
+    }
     return (
       <div className="bottom-shadow">
         <div className="bg-color-a ">
@@ -18,7 +29,7 @@ const Navbar = () => {
               >
                 <img src={logo} alt="" className="w-12 h-12" />
                 <span className="ml-2 text-xl font-bold tracking-wide text-gray-100 uppercase">
-                  Healthy Mind 
+                  Healthy Mind
                 </span>
               </Link>
               <ul className="flex items-center hidden space-x-8 lg:flex">
@@ -49,7 +60,7 @@ const Navbar = () => {
                     title="About us"
                     className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
                   >
-                    Blog
+                    Blog 
                   </Link>
                 </li>
                 <li>
@@ -62,49 +73,60 @@ const Navbar = () => {
                     Contact
                   </Link>
                 </li>
-                <li>
-                  <Link
-                    to="/myreviews"
-                    aria-label="Product pricing"
-                    title="Product pricing"
-                    className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
-                  >
-                    My Reviews
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/addservices"
-                    aria-label="About us"
-                    title="About us"
-                    className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
-                  >
-                    Add Services
-                  </Link>
-                </li>
+                {user?.email ? (
+                  <>
+                    <li>
+                      <Link
+                        to="/myreviews"
+                        aria-label="Product pricing"
+                        title="Product pricing"
+                        className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
+                      >
+                        My Reviews
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/addservices"
+                        aria-label="About us"
+                        title="About us"
+                        className="font-medium tracking-wide text-gray-100 transition-colors duration-200 hover:text-teal-accent-400"
+                      >
+                        Add Services
+                      </Link>
+                    </li>
+                    <ul className="flex items-center hidden space-x-8 lg:flex">
+                      <li>
+                        <Link
+                        onClick={handalLogOut}
+                          
+                          className="inline-block px-6 py-2.5 bg-color-b text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-900 hover:shadow-lg focus:bg-blue-500 focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out"
+                          aria-label="Sign up"
+                          title="Sign up"
+                        >
+                          Logout
+                        </Link>
+                      </li>
+                    </ul>
+                  </>
+                ) : (
+                  <>
+                    <ul className="flex items-center hidden space-x-8 lg:flex">
+                      <li>
+                        <Link
+                          to="/login"
+                          className="inline-block px-6 py-2.5 bg-color-b text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-900 hover:shadow-lg focus:bg-blue-500 focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out"
+                          aria-label="Sign up"
+                          title="Sign up"
+                        >
+                          Login
+                        </Link>
+                      </li>
+                    </ul>
+                  </>
+                )}
               </ul>
-              <ul className="flex items-center hidden space-x-8 lg:flex">
-                <li>
-                  <Link
-                    to="/"
-                    className="inline-block px-6 py-2.5 bg-color-b text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-900 hover:shadow-lg focus:bg-blue-500 focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out"
-                    aria-label="Sign up"
-                    title="Sign up"
-                  >
-                    Logout
-                  </Link>
-                </li>
-                <li>
-                  <Link
-                    to="/login"
-                    className="inline-block px-6 py-2.5 bg-color-b text-white font-medium text-xs leading-tight uppercase rounded shadow-md hover:bg-blue-900 hover:shadow-lg focus:bg-blue-500 focus:shadow-lg focus:outline-none focus:ring-0 active:shadow-lg transition duration-150 ease-in-out"
-                    aria-label="Sign up"
-                    title="Sign up"
-                  >
-                    Login
-                  </Link>
-                </li>
-              </ul>
+             
               <div className="lg:hidden">
                 <button
                   aria-label="Open Menu"

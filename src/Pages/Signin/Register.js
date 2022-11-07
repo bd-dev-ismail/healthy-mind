@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import registerimg from '../../assets/register.svg'
 import { AuthContext } from '../../context/AuthProvider';
 const Register = () => {
-    const {registerUser} = useContext(AuthContext);
+    const { registerUser, withGoogle } = useContext(AuthContext);
     const navigate = useNavigate('/');
     const handalRegister = (e)=> {
       e.preventDefault();
@@ -23,7 +23,17 @@ const Register = () => {
         toast.success('Successfully Register');
         
       })
-      .catch(err => console.log(err))
+      .catch(err => toast.error(err.message))
+    };
+    //login with google
+    const handalGoogle = ()=> {
+      withGoogle()
+      .then(result=> {
+        const user = result.user;
+        console.log(user);
+        navigate('/')
+      })
+      .catch(err=> toast.error(err.message));
     }
     return (
       <div>
@@ -99,8 +109,8 @@ const Register = () => {
                 </div>
               </form>
               <div className="hero-content">
-                <button className="btn w-[320px] border-0 bg-color-a">
-                  Login With Register
+                <button onClick={handalGoogle} className="btn w-[320px] border-0 bg-color-a">
+                  Register With Google
                 </button>
               </div>
             </div>
