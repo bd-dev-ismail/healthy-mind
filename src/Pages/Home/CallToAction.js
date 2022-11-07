@@ -27,7 +27,7 @@ const CallToAction = () => {
               </div>
             </div>
 
-            <div className="w-[38rem] text-white">
+            <div className="w-[38rem] hidden lg:block text-white">
               <p>
                 Study hard until you can say “I am a doctor” everything is gonna
                 be alright.” “Behind every fine doctor, there is always a

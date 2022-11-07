@@ -17,7 +17,7 @@ const Gallery = () => {
             </p>
           </div>
           <div className="container flex flex-col justify-center lg:p-10 mx-auto">
-            <div className="grid grid-cols-1 gap-4 lg:grid-cols-3">
+            <div className="grid grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2">
               <img
                 alt=".."
                 className="object-cover w-96 dark:bg-gray-500 aspect-square"
