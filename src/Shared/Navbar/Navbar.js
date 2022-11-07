@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/logo.png'
+import { AuthContext } from '../../context/AuthProvider';
 const Navbar = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
+    const {user} = useContext(AuthContext);
     return (
       <div className="bottom-shadow">
         <div className="bg-color-a ">
@@ -16,7 +18,7 @@ const Navbar = () => {
               >
                 <img src={logo} alt="" className="w-12 h-12" />
                 <span className="ml-2 text-xl font-bold tracking-wide text-gray-100 uppercase">
-                  Healthy Mind
+                  Healthy Mind 
                 </span>
               </Link>
               <ul className="flex items-center hidden space-x-8 lg:flex">
