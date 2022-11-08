@@ -22,10 +22,7 @@ const Hero = () => {
               Personalized and Comfortable
             </h1>
             <p className="px-8 mt-8 mb-12 text-lg text-start">
-              Imagine yourself having a fight with your romantic partner. The
-              tension of the situation makes your limbic system run at full
-              throttle and you become flooded with stress hormones like cortisol
-              and adrenalin.
+             Hi! I am Doctor Md Ismail Hossen. I am gratuated in MBBS , FCPS, Medicine (part 2).In Chittagong Medical Hospital I am a Senior doctor of Psychology word.Last 8 years I am opening my chamber.Successfully 1200+ patitent have running in my chamber.
             </p>
             <div className="flex flex-wrap justify-center">
               <button

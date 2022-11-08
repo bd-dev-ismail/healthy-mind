@@ -6,14 +6,14 @@ const Gallery = () => {
         <section className="py-6 dark:bg-gray-800 container mx-auto">
           <div>
             <h3 className="text-5xl text-center font-bold">
-              Counciling Patient <span className="text-color-b">Gallery</span>
+              Patient <span className="text-color-b">Gallery</span>
             </h3>
             <p className="text-center my-3">
-              Counseling psychologists help people recognize their strengths and
-              find resources to cope with everyday <br /> problems and
-              adversity. Counseling psychologists focus on interactions between
-              people and their environment, <br /> and on educational and career
-              development.
+              Patient care is the core responsibility of a medical practitioner.
+              They have to assure that <br /> the patient is given the best
+              possible care. In hospitals or any other medical institution, the
+              doctors and nurses take care of their <br /> patients very
+              carefully.
             </p>
           </div>
           <div className="container flex flex-col justify-center lg:p-10 mx-auto">
