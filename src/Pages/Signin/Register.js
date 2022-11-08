@@ -1,11 +1,22 @@
 import React, { useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import registerimg from '../../assets/register.svg'
 import { AuthContext } from '../../context/AuthProvider';
 const Register = () => {
-    const { registerUser, withGoogle } = useContext(AuthContext);
+  
+    const {
+      registerUser,
+
+      withGoogle,
+
+      updateData,
+    } = useContext(AuthContext);
+   
+   
     const navigate = useNavigate('/');
+     const location = useLocation();
+     const from = location.state?.from?.pathname || "/";
     const handalRegister = (e)=> {
       e.preventDefault();
       const form = e.target;
@@ -14,17 +25,30 @@ const Register = () => {
       const email = form.email.value;
       const password = form.password.value;
       // console.log(name, photoURL, email, password);
+      const profile = {
+        displayName: name,
+        photoURL: photoURL,
+      };
       registerUser(email, password)
       .then(result=> {
         const user = result.user;
         console.log(user);
         form.reset();
-        navigate('/');
+        navigate(from, {replace: true});
+        updateData(profile)
+        .then(()=>{
+          window.location.reload();
+        })
+        .catch(err=>console.log(err))
+        
+        
         toast.success('Successfully Register');
         
       })
       .catch(err => toast.error(err.message))
     };
+
+   
     //login with google
     const handalGoogle = ()=> {
       withGoogle()
@@ -53,6 +77,7 @@ const Register = () => {
                   </label>
                   <input
                   required
+                  
                   name='name'
                     type="text"
                     placeholder="name"
@@ -64,6 +89,7 @@ const Register = () => {
                     <span className="label-text">PhotoURL</span>
                   </label>
                   <input
+                  
                   required
                   name='photo'
                     type="text"

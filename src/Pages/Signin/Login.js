@@ -1,10 +1,13 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import imglogin from '../../assets/login.svg'
 import { AuthContext } from '../../context/AuthProvider';
 const Login = () => {
   const { loginUser, withGoogle } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const location = useLocation();
+  const from = location.state?.from?.pathname || "/";
   const handalLogin = (e)=> {
     e.preventDefault();
     const form = e.target;
@@ -16,6 +19,7 @@ const Login = () => {
       const user = result.user;
       console.log(user);
       form.reset();
+      navigate(from, {replace: true})
       toast.success('Login Sccessfull')
     })
     .catch(err => toast.error(err.message));
@@ -26,6 +30,7 @@ const Login = () => {
     .then(result=> {
       const user = result.user;
       console.log(user);
+      navigate(from, { replace: true });
       toast.success('Sccessfully Login With Google');
     })
     .catch(err => toast.error(err.message));
