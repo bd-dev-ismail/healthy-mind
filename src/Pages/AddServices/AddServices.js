@@ -30,6 +30,21 @@ const AddServices = () => {
             desc
         }
         console.log(services);
+        fetch('http://localhost:5000/services', {
+          method: 'POST',
+          headers: {
+            'content-type': 'application/json'
+          },
+          body: JSON.stringify(services)
+        })
+        .then(res => res.json())
+        .then(data => {
+          console.log(data);
+          toast.success('Successfully Add a Service');
+          form.reset();
+        })
+        .catch(err => console.log(err))
+        
     }
     return (
       <div className="container mx-auto flex justify-center my-20 lg:my-0 md:my-0 items-center min-h-screen ">
