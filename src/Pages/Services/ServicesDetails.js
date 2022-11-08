@@ -43,7 +43,7 @@ const ServicesDetails = () => {
           <div>
             <ServiceReview service={service} key={service._id} />
           </div>
-          <div className="my-20 grid grid-cols-1 lg:grid-cols-2 gap-4 ml-10">
+          <div className="my-20 grid grid-cols-1 lg:grid-cols-2 gap-4 lg:ml-10">
             {reviews.map((singleReview) => (
               <DisplayReviews
                 key={singleReview._id}

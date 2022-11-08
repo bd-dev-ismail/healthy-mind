@@ -26,7 +26,7 @@ const DisplayReviews = ({ singleReview }) => {
         </div>
         <div className="p-4 space-y-2 text-sm dark:text-gray-400">
           <p>{review}</p>
-          {/* w-5 h-5 fill-current */}
+         
         </div>
       </div>
     </div>

@@ -17,6 +17,7 @@ const ServiceReview = ({ service , refresh, setRefresh}) => {
     review,
     rating,
     serviceId: service?._id,
+    email: user?.email,
   };
   
   const handalReview = (e)=>{
