@@ -97,7 +97,7 @@ const Register = () => {
                   <label className="label">
                     
                     <Link
-                      to="/register"
+                      to="/login"
                       className="label-text-alt font-semibold link link-hover"
                     >
                       Already have an accont? Please Login

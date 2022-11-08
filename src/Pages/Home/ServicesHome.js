@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { FaArrowRight } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 import SingleServicesHome from './SingleServicesHome';
 
@@ -31,7 +32,7 @@ const ServicesHome = () => {
           <div className="text-center">
             <Link to="/services">
               <button className="btn bg-color-a border-0">
-                See All Services
+                See All Services <FaArrowRight className='ml-3'/>
               </button>
             </Link>
           </div>

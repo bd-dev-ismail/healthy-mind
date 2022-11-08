@@ -1,8 +1,9 @@
 import React from 'react';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
+import { Link } from 'react-router-dom';
 
 const SingleServicesHome = ({ service }) => {
-    const { bannerURL, price, name, desc } = service;
+    const { bannerURL, price, name, desc , _id} = service;
   return (
     <div className="card w-96 bg-base-100 shadow-xl">
       <PhotoProvider>
@@ -17,7 +18,9 @@ const SingleServicesHome = ({ service }) => {
         <p>Fees: ${price}</p>
         <p>{`${desc.slice(0, 100)}...`}</p>
         <div className="card-actions justify-end">
-          <div className="btn btn-sm bg-color-b border-0">See Details</div>
+          <Link to={`/servicesDetails/${_id}`}>
+            <div className="btn btn-sm bg-color-b border-0">See Details</div>
+          </Link>
         </div>
       </div>
     </div>

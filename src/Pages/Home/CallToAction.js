@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaPhoneAlt } from "react-icons/fa";
+import { FaArrowRight, FaPhoneAlt } from "react-icons/fa";
 import { Link } from 'react-router-dom';
 const CallToAction = () => {
     return (
@@ -37,7 +37,7 @@ const CallToAction = () => {
               </p>
               <div className='text-center mt-10 mb-5'>
                 <Link to="/contact">
-                  <button className="btn bg-color-a">Contact Me</button>
+                  <button className="btn bg-color-b">Contact Me <FaArrowRight className='ml-3'/></button>
                 </Link>
               </div>
             </div>
