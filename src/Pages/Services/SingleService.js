@@ -6,7 +6,7 @@ import Star from './Star';
 const SingleService = ({ service }) => {
     const {bannerURL, price, name, desc, _id, rating} = service;
   return (
-    <div className="card w-96 bg-base-100 shadow-xl">
+    <div className="card w-full  md:w-96 bg-base-100 shadow-xl">
       <PhotoProvider>
         <PhotoView src={bannerURL}>
           <figure>

@@ -7,7 +7,7 @@ const Hero = () => {
     return (
       <div className="mb-20">
         <section
-          className="dark:bg-gray-800 h-[70vh] dark:text-gray-100"
+          className="dark:bg-gray-800 h-full dark:text-gray-100"
           style={{
             background: `url(${hero})`,
             backgroundRepeat: "noRepeat",
@@ -29,7 +29,7 @@ const Hero = () => {
               doctor of Psychology word.Last 8 years I am opening my
               chamber.Successfully 1200+ patitent have running in my chamber.
             </p>
-            <div className="flex flex-wrap justify-center">
+            <div className="flex flex-wrap justify-center ">
               <Link to="/services">
                 <button
                   className="px-8 py-3 m-2 text-lg font-semibold  text-white
