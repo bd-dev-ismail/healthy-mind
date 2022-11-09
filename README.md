@@ -37,7 +37,8 @@ An Awesome Single Page Doctor Personal Services website. A doctor can display he
 ### Technologies
 
 ------------
-
+- Use Nosql Database Mongodb.
+- Included With Backend Functionality.
 - For styleing we use Tailwind .
 -  Authentication system & Live Website host on Firebase.
 - React Router Dom for Routing .
