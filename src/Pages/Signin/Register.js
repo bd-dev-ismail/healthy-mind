@@ -1,4 +1,5 @@
 import React, { useContext } from 'react';
+import { Helmet } from 'react-helmet';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import registerimg from '../../assets/register.svg'
@@ -61,6 +62,9 @@ const Register = () => {
     }
     return (
       <div>
+        <Helmet>
+          <title>Register -Healthy Mind</title>
+        </Helmet>
         <div className="hero min-h-screen bg-base-200">
           <div className="hero-content flex-col-reverse lg:flex-row-reverse ">
             <div className="text-center lg:text-left lg:mr-20">
@@ -76,9 +80,8 @@ const Register = () => {
                     <span className="label-text">Name</span>
                   </label>
                   <input
-                  required
-                  
-                  name='name'
+                    required
+                    name="name"
                     type="text"
                     placeholder="name"
                     className="input input-bordered"
@@ -89,9 +92,8 @@ const Register = () => {
                     <span className="label-text">PhotoURL</span>
                   </label>
                   <input
-                  
-                  required
-                  name='photo'
+                    required
+                    name="photo"
                     type="text"
                     placeholder="PhotoURL"
                     className="input input-bordered"
@@ -102,8 +104,8 @@ const Register = () => {
                     <span className="label-text">Email</span>
                   </label>
                   <input
-                  required
-                  name='email'
+                    required
+                    name="email"
                     type="text"
                     placeholder="email"
                     className="input input-bordered"
@@ -114,14 +116,13 @@ const Register = () => {
                     <span className="label-text">Password</span>
                   </label>
                   <input
-                  required
-                  name='password'
+                    required
+                    name="password"
                     type="password"
                     placeholder="password"
                     className="input input-bordered"
                   />
                   <label className="label">
-                    
                     <Link
                       to="/login"
                       className="label-text-alt font-semibold link link-hover"
@@ -135,7 +136,10 @@ const Register = () => {
                 </div>
               </form>
               <div className="hero-content">
-                <button onClick={handalGoogle} className="btn w-[320px] border-0 bg-color-a">
+                <button
+                  onClick={handalGoogle}
+                  className="btn w-[320px] border-0 bg-color-a"
+                >
                   Register With Google
                 </button>
               </div>

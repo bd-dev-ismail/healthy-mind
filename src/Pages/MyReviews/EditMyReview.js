@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import { useLoaderData, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 
 const EditMyReview = () => {
      const [newReview, setNewReview] = useState(null);
      const singleReview = useLoaderData();
-     const { review, rating, serviceId , _id} = singleReview;
+     const { review,  serviceId , _id} = singleReview;
      const [service, setService] = useState({});
      const navigate = useNavigate();
      //sercie details
@@ -42,6 +43,9 @@ const EditMyReview = () => {
      }
     return (
       <div className="container mx-auto my-20 flex justify-center items-center">
+        <Helmet>
+          <title>Edit Review -Healthy Mind</title>
+        </Helmet>
         <div className="flex flex-col w-96 p-8 shadow-sm rounded-xl lg:p-12 bg-color-a text-gray-100">
           <div className="flex flex-col items-center w-full">
             <h2 className="text-3xl font-semibold text-center">

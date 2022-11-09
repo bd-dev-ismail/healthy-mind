@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import SingleService from './SingleService';
 
 const Services = () => {
@@ -11,6 +12,9 @@ const Services = () => {
     },[])
     return (
       <div className="container mx-auto">
+        <Helmet>
+          <title>Services -Healthy Mind</title>
+        </Helmet>
         <div className="text-center my-10">
           <h3 className="text-5xl font-bold">My Services</h3>
           <p className='mt-3'>

@@ -3,6 +3,7 @@ import { AuthContext } from '../../context/AuthProvider';
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { toast } from 'react-toastify';
+import { Helmet } from 'react-helmet';
 const AddServices = () => {
     const [startDate, setStartDate] = useState(new Date());
     const {user} = useContext(AuthContext);
@@ -48,6 +49,9 @@ const AddServices = () => {
     }
     return (
       <div className="container mx-auto flex justify-center my-20 lg:my-0 md:my-0 items-center min-h-screen ">
+        <Helmet>
+          <title>Add Services -Healthy Mind</title>
+        </Helmet>
         <section className="p-6 bg-gray-800  text-gray-900 rounded-md">
           <form
             onSubmit={handalService}
@@ -107,7 +111,7 @@ const AddServices = () => {
                     Price
                   </label>
                   <input
-                  name='price'
+                    name="price"
                     id="price"
                     type="number"
                     placeholder="Enter Price"
@@ -119,7 +123,7 @@ const AddServices = () => {
                     Rating
                   </label>
                   <input
-                  name='rating'
+                    name="rating"
                     id="rating"
                     type="number"
                     placeholder="Enter Rating Of One Number Under 5"
@@ -138,24 +142,25 @@ const AddServices = () => {
                     />
                   </div>
                 </div>
-               
+
                 <div className="col-span-full">
                   <label htmlFor="desc" className="text-sm text-white">
                     Description
                   </label>
-                  
-                    
-                    <textarea
-                    name='desc'
-                      className="textarea textarea-bordered w-full h-36"
-                      placeholder="Service Description"
-                      
-                    ></textarea>
-                    
-                  
+
+                  <textarea
+                    name="desc"
+                    className="textarea textarea-bordered w-full h-36"
+                    placeholder="Service Description"
+                  ></textarea>
                 </div>
-                <div className='mt-5'>
-                    <button type="submit" className='bg-color-a py-3 rounded-md text-white font-semibold px-4'>Add Service</button>
+                <div className="mt-5">
+                  <button
+                    type="submit"
+                    className="bg-color-a py-3 rounded-md text-white font-semibold px-4"
+                  >
+                    Add Service
+                  </button>
                 </div>
               </div>
             </fieldset>

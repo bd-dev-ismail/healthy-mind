@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import { useLoaderData } from 'react-router-dom';
 import DisplayReviews from './DisplayReviews';
 import ServiceReview from './ServiceReview';
@@ -7,7 +8,7 @@ const ServicesDetails = () => {
     const service = useLoaderData();
     const [reviews, setReviews] = useState([]);
   const [refresh, setRefresh] = useState(false);
-    const {bannerURL, name, price, desc, _id} = service;
+    const {bannerURL, name, price, desc, _id, } = service;
     useEffect(()=>{
       fetch(`http://localhost:5000/reviews?id=${_id}`)
         .then((res) => res.json())
@@ -22,6 +23,9 @@ const ServicesDetails = () => {
     },[])
     return (
       <div className="container mx-auto my-10">
+        <Helmet>
+          <title>Service Details -Healthy Mind</title>
+        </Helmet>
         <div>
           <h3 className="text-3xl font-bold text-center my-10">
             Details & Reviews About <span className="text-color-b">{name}</span>

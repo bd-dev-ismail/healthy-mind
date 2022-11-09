@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet';
 import { AuthContext } from '../../context/AuthProvider';
 import MySingleReview from './MySingleReview';
 
@@ -17,6 +18,9 @@ const MyReview = () => {
     
     return (
       <div className="container mx-auto min-h-screen">
+        <Helmet>
+          <title>My Reviews -Healthy Mind</title>
+        </Helmet>
         {review.length === 0 ? (
           <>
             <div>
@@ -24,8 +28,8 @@ const MyReview = () => {
                 No Review Given Yet!!
               </p>
               <p className="text-center text-3xl font-semibold mt-20">
-                <span className='text-color-b'>Note:</span> If You Write review on particular services
-                Then You Can See Your all Reviews here.
+                <span className="text-color-b">Note:</span> If You Write review
+                on particular services Then You Can See Your all Reviews here.
               </p>
             </div>
           </>

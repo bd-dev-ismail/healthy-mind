@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 
 import CallToAction from './CallToAction';
 import Care from './Care';
@@ -10,6 +11,9 @@ const Home = () => {
    
     return (
       <div>
+        <Helmet>
+          <title>Home -Healthy Mind</title>
+        </Helmet>
         <Hero />
         <ServicesHome />
         <Care />

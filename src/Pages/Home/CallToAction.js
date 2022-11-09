@@ -36,7 +36,7 @@ const CallToAction = () => {
                 others
               </p>
               <div className='text-center mt-10 mb-5'>
-                <Link to="/contact">
+                <Link>
                   <button className="btn bg-color-b">Contact Me <FaArrowRight className='ml-3'/></button>
                 </Link>
               </div>
