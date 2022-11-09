@@ -10,7 +10,7 @@ const ServicesDetails = () => {
   const [refresh, setRefresh] = useState(false);
     const {bannerURL, name, price, desc, _id, } = service;
     useEffect(()=>{
-      fetch(`http://localhost:5000/reviews?id=${_id}`)
+      fetch(`https://healthy-mind-server.vercel.app/reviews?id=${_id}`)
         .then((res) => res.json())
         .then((data) => {
           setReviews(data);

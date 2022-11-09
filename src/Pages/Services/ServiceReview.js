@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { FaArrowRight } from 'react-icons/fa';
-import { Link } from 'react-router-dom';
+import { Link,  } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import { AuthContext } from '../../context/AuthProvider';
 
@@ -9,6 +9,7 @@ const ServiceReview = ({ service , refresh, setRefresh}) => {
   const [rating, setRating] = useState(1);
   const [review, setReview] = useState(null);
   const { user } = useContext(AuthContext);
+  
   
   // console.log(review);
   const sendReviews = {
@@ -22,7 +23,10 @@ const ServiceReview = ({ service , refresh, setRefresh}) => {
   
   const handalReview = (e)=>{
     e.preventDefault();
-    fetch("http://localhost:5000/reviews", {
+    if(review.length > 50){
+      return toast.warning("Review Sholud be Contain 50 Characters  only!", {autoClose: 1000});
+    }
+    fetch("https://healthy-mind-server.vercel.app/reviews", {
       method: "POST",
       headers: {
         "content-type": "application/json",
@@ -32,11 +36,11 @@ const ServiceReview = ({ service , refresh, setRefresh}) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        if(data.message){
-          toast.warning(data.message)
+        // console.log(data);
+        if(data?.message){
+          toast.warning(data?.message)
         }
-        if (data.acknowledged) {
+        if (data?.acknowledged) {
           toast.success("Review Added");
           e.target.reset();
           setRefresh(refresh);

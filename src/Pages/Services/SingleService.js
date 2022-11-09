@@ -1,6 +1,7 @@
 import React from 'react';
 import { PhotoProvider, PhotoView } from 'react-photo-view';
 import { Link } from 'react-router-dom';
+import Star from './Star';
 
 const SingleService = ({ service }) => {
     const {bannerURL, price, name, desc, _id, rating} = service;
@@ -16,7 +17,10 @@ const SingleService = ({ service }) => {
       <div className="card-body bg-color-a text-white">
         <h2 className="card-title">{name}</h2>
         <p>Fees: ${price}</p>
-        <p>Ratings: {rating}</p>
+        <p className="flex items-center">
+          <span className="mr-3">Ratings:</span> <Star stars={rating} />{" "}
+          {rating}
+        </p>
         <p>{`${desc.slice(0, 100)}...`}</p>
         <div className="card-actions justify-end">
           <Link to={`/servicesDetails/${_id}`}>

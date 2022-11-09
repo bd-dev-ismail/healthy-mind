@@ -11,14 +11,14 @@ const MySingleReview = ({ rev, setRefresh , refresh}) => {
   
   //for service name
   useEffect(() => {
-    fetch(`http://localhost:5000/services/${serviceId}`)
+    fetch(`https://healthy-mind-server.vercel.app/services/${serviceId}`)
       .then((res) => res.json())
       .then((data) => setService(data));
   }, [serviceId]);
   //working on delete
   const handalDelete = (id) => {
    
-    fetch(`http://localhost:5000/myreview/${id}`, {
+    fetch(`https://healthy-mind-server.vercel.app/myreview/${id}`, {
       method: "DELETE",
       headers: {
         authorization: `Bearer ${localStorage.getItem("healthy-mind")}`,
@@ -26,11 +26,11 @@ const MySingleReview = ({ rev, setRefresh , refresh}) => {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log(data);
-        if (data.message) {
-          toast.warning(data.message);
+        // console.log(data);
+        if (data?.message) {
+          toast.warning(data?.message);
         }
-        if (data.deletedCount > 0) {
+        if (data?.deletedCount > 0) {
           toast.warning("You Delete a Review");
           setRefresh(refresh);
         }
@@ -55,8 +55,8 @@ const MySingleReview = ({ rev, setRefresh , refresh}) => {
   
   return (
     <div>
-      <div className="container flex flex-col w-full max-w-lg h-60 p-6 mx-auto divide-y rounded-md divide-gray-800 bg-color-a text-gray-100">
-        <div className="flex justify-between p-4">
+      <div className="container flex flex-col w-full max-w-lg lg:h-72 h-80 p-6 mx-auto divide-y rounded-md divide-gray-800 bg-color-a text-gray-100 relative">
+        <div className="lg:flex justify-between p-4">
           <div className="flex space-x-4">
             <div>
               <img
@@ -79,7 +79,7 @@ const MySingleReview = ({ rev, setRefresh , refresh}) => {
         </div>
         <div className="p-4 space-y-2 text-sm dark:text-gray-400">
           <p className="mb-5">{review}</p>
-          <div className="flex justify-between">
+          <div className="flex absolute  bottom-10" style={{justifyContent: 'between !important' }}>
             <Link to={`/edit/${_id}`}>
               {" "}
               <button className="btn btn-sm bg-color-b border-0">Edit</button>

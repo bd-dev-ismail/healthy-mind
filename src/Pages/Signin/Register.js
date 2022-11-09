@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
@@ -36,7 +36,7 @@ const Register = () => {
         const currentUser = {
           email: user?.email,
         };
-        fetch("http://localhost:5000/jwt", {
+        fetch("https://healthy-mind-server.vercel.app/jwt", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -45,8 +45,8 @@ const Register = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data.token);
-            localStorage.setItem("healthy-mind", data.token);
+            // console.log(data.token);
+            localStorage.setItem("healthy-mind", data?.token);
              form.reset();
              navigate(from, { replace: true });
           });
@@ -73,7 +73,7 @@ const Register = () => {
         const currentUser = {
           email: user?.email,
         };
-        fetch("http://localhost:5000/jwt", {
+        fetch("https://healthy-mind-server.vercel.app/jwt", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -82,8 +82,8 @@ const Register = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data.token);
-            localStorage.setItem("healthy-mind", data.token);
+            // console.log(data.token);
+            localStorage.setItem("healthy-mind", data?.token);
            navigate("/");
           
             toast.success("Register With Google Sccessfully");
@@ -92,6 +92,9 @@ const Register = () => {
       })
       .catch(err=> toast.error(err.message));
     }
+    useEffect(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
+    }, []);
     return (
       <div>
         <Helmet>

@@ -10,7 +10,7 @@ const MyReview = () => {
     const [review, setReview] = useState([]);
     const [refresh, setRefresh] = useState(false);
     useEffect(()=>{
-        fetch(`http://localhost:5000/myreview?email=${user?.email}`, {
+        fetch(`https://healthy-mind-server.vercel.app/myreview?email=${user?.email}`, {
           headers: {
             authorization: `Bearer ${localStorage.getItem('healthy-mind')}`
           }

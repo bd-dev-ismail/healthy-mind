@@ -5,10 +5,10 @@ import SingleServicesHome from './SingleServicesHome';
 
 const ServicesHome = () => {
   const [services, setServices] = useState([]);
-  console.log(services);
+  // console.log(services);
   const size = 3;
   useEffect(() => {
-    fetch(`http://localhost:5000/services?size=${size}`)
+    fetch(`https://healthy-mind-server.vercel.app/services?size=${size}`)
       .then((res) => res.json())
       .then((data) => setServices(data));
   }, []);

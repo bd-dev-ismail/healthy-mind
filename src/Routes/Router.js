@@ -16,7 +16,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     element: <Main></Main>,
-    // errorElement: <ErrorPage></ErrorPage>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: "/",
@@ -58,13 +58,13 @@ export const router = createBrowserRouter([
         path: "/servicesDetails/:id",
         element: <ServicesDetails></ServicesDetails>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/services/${params.id}`),
+          fetch(`https://healthy-mind-server.vercel.app/services/${params.id}`),
       },
       {
         path: "/edit/:id",
         element: <EditMyReview></EditMyReview>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/review/${params.id}`),
+          fetch(`https://healthy-mind-server.vercel.app/review/${params.id}`),
       },
     ],
   },

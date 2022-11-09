@@ -31,7 +31,7 @@ const AddServices = () => {
             desc
         }
         console.log(services);
-        fetch("http://localhost:5000/services", {
+        fetch("https://healthy-mind-server.vercel.app/services", {
           method: "POST",
           headers: {
             "content-type": "application/json",
@@ -41,9 +41,9 @@ const AddServices = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-            console.log(data);
-            if (data.message) {
-              return toast.warning(data.message);
+            // console.log(data);
+            if (data?.message) {
+              return toast.warning(data?.message);
             }
             toast.success("Successfully Add a Service");
             form.reset();

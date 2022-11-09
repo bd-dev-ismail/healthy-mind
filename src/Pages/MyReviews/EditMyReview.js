@@ -11,7 +11,7 @@ const EditMyReview = () => {
      const navigate = useNavigate();
      //sercie details
      useEffect(()=>{
-        fetch(`http://localhost:5000/services/${serviceId}`)
+        fetch(`https://healthy-mind-server.vercel.app/services/${serviceId}`)
         .then(res => res.json())
         .then(data =>{
             // console.log(data);
@@ -24,7 +24,13 @@ const EditMyReview = () => {
     
      const handalReviewEdit = (e)=>{
         e.preventDefault();
-        fetch(`http://localhost:5000/myreviewupdate/${_id}`, {
+        if (newReview.length > 50) {
+          return toast.warning(
+            "Review Sholud be Contain 50 Characters  only!",
+            { autoClose: 1000 }
+          );
+        }
+        fetch(`https://healthy-mind-server.vercel.app/myreviewupdate/${_id}`, {
           method: "PUT",
           headers: {
             "content-type": "application/json",
@@ -35,10 +41,10 @@ const EditMyReview = () => {
           .then((res) => res.json())
           .then((data) => {
             // console.log(data);
-            if (data.message) {
-              toast.warning(data.message);
+            if (data?.message) {
+              toast.warning(data?.message);
             }
-            if (data.modifiedCount > 0) {
+            if (data?.modifiedCount > 0) {
               toast.success("Review Update Successfully");
               setNewReview("");
               navigate("/myreviews");

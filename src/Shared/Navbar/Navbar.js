@@ -12,6 +12,7 @@ const Navbar = () => {
       logOutUser()
       .then(()=>{
         navigate('/');
+        localStorage.removeItem("healthy-mind");
         toast.warning('LogOut');
       })
       .catch(err=> toast.error(err.message));
