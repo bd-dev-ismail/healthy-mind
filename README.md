@@ -12,7 +12,7 @@ An Awesome Single Page Doctor Personal Services website. A doctor can display he
 ### Live Site 
 
 ------------
-#### ##### #### ### Hosted In Firebase -> [Healthy Mind](https://healthy-mind-8c70e.web.app/ "Healthy Mind")
+#### Hosted In Firebase -> [Healthy Mind](https://healthy-mind-8c70e.web.app/ "Healthy Mind")
 
 ------------
 
