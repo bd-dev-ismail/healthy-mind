@@ -33,9 +33,24 @@ const Register = () => {
       registerUser(email, password)
       .then(result=> {
         const user = result.user;
-        console.log(user);
-        form.reset();
-        navigate(from, {replace: true});
+        const currentUser = {
+          email: user?.email,
+        };
+        fetch("http://localhost:5000/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data.token);
+            localStorage.setItem("healthy-mind", data.token);
+             form.reset();
+             navigate(from, { replace: true });
+          });
+       
         updateData(profile)
         .then(()=>{
           window.location.reload();
@@ -55,8 +70,25 @@ const Register = () => {
       withGoogle()
       .then(result=> {
         const user = result.user;
-        console.log(user);
-        navigate('/')
+        const currentUser = {
+          email: user?.email,
+        };
+        fetch("http://localhost:5000/jwt", {
+          method: "POST",
+          headers: {
+            "content-type": "application/json",
+          },
+          body: JSON.stringify(currentUser),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data.token);
+            localStorage.setItem("healthy-mind", data.token);
+           navigate("/");
+          
+            toast.success("Register With Google Sccessfully");
+          });
+        
       })
       .catch(err=> toast.error(err.message));
     }

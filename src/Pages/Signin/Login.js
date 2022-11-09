@@ -19,9 +19,25 @@ const Login = () => {
     .then(result=> {
       const user = result.user;
       console.log(user);
-      form.reset();
-      navigate(from, {replace: true})
-      toast.success('Login Sccessfull')
+       const currentUser = {
+         email: user?.email,
+       };
+       fetch("http://localhost:5000/jwt", {
+         method: "POST",
+         headers: {
+           "content-type": "application/json",
+         },
+         body: JSON.stringify(currentUser),
+       })
+         .then((res) => res.json())
+         .then((data) => {
+           console.log(data.token);
+           localStorage.setItem("healthy-mind", data.token);
+           form.reset();
+           navigate(from, { replace: true });
+           toast.success("Login Sccessfull");
+         });
+      
     })
     .catch(err => toast.error(err.message));
   };
@@ -30,9 +46,25 @@ const Login = () => {
     withGoogle()
     .then(result=> {
       const user = result.user;
-      console.log(user);
-      navigate(from, { replace: true });
-      toast.success('Sccessfully Login With Google');
+      const currentUser = {
+        email: user?.email
+      }
+      fetch("http://localhost:5000/jwt", {
+        method: 'POST',
+        headers: {
+          'content-type': 'application/json'
+        },
+        body: JSON.stringify(currentUser)
+      })
+      .then(res => res.json())
+      .then(data => {
+        console.log(data.token);
+        localStorage.setItem('healthy-mind', data.token);
+        console.log(user);
+        navigate(from, { replace: true });
+        toast.success("Sccessfully Login With Google");
+      })
+      
     })
     .catch(err => toast.error(err.message));
   }

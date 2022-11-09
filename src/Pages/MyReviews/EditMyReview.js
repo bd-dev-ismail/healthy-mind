@@ -25,21 +25,25 @@ const EditMyReview = () => {
      const handalReviewEdit = (e)=>{
         e.preventDefault();
         fetch(`http://localhost:5000/myreviewupdate/${_id}`, {
-            method: 'PUT',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(update)
+          method: "PUT",
+          headers: {
+            "content-type": "application/json",
+            authorization: `Bearer ${localStorage.getItem("healthy-mind")}`,
+          },
+          body: JSON.stringify(update),
         })
-        .then(res => res.json())
-        .then(data => {
+          .then((res) => res.json())
+          .then((data) => {
             // console.log(data);
-            if(data.modifiedCount > 0){
-                toast.success('Review Update Successfully');
-                setNewReview("");
-                navigate("/myreviews");
+            if (data.message) {
+              toast.warning(data.message);
             }
-        })
+            if (data.modifiedCount > 0) {
+              toast.success("Review Update Successfully");
+              setNewReview("");
+              navigate("/myreviews");
+            }
+          });
      }
     return (
       <div className="container mx-auto my-20 flex justify-center items-center">

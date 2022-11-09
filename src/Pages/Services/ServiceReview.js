@@ -26,12 +26,16 @@ const ServiceReview = ({ service , refresh, setRefresh}) => {
       method: "POST",
       headers: {
         "content-type": "application/json",
+        authorization: `Bearer ${localStorage.getItem("healthy-mind")}`,
       },
       body: JSON.stringify(sendReviews),
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        if(data.message){
+          toast.warning(data.message)
+        }
         if (data.acknowledged) {
           toast.success("Review Added");
           e.target.reset();

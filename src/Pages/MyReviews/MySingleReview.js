@@ -20,10 +20,16 @@ const MySingleReview = ({ rev, setRefresh , refresh}) => {
    
     fetch(`http://localhost:5000/myreview/${id}`, {
       method: "DELETE",
+      headers: {
+        authorization: `Bearer ${localStorage.getItem("healthy-mind")}`,
+      },
     })
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
+        if (data.message) {
+          toast.warning(data.message);
+        }
         if (data.deletedCount > 0) {
           toast.warning("You Delete a Review");
           setRefresh(refresh);
@@ -61,7 +67,9 @@ const MySingleReview = ({ rev, setRefresh , refresh}) => {
             </div>
             <div>
               <h4 className="font-bold">{name}</h4>
-              <p>{service?.name}</p>
+              <p>
+                <span className='font-semibold'>Service Name:</span> {service?.name}
+              </p>
             </div>
           </div>
           <div className="flex items-center space-x-2 dark:text-yellow-500">

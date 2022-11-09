@@ -31,20 +31,24 @@ const AddServices = () => {
             desc
         }
         console.log(services);
-        fetch('http://localhost:5000/services', {
-          method: 'POST',
+        fetch("http://localhost:5000/services", {
+          method: "POST",
           headers: {
-            'content-type': 'application/json'
+            "content-type": "application/json",
+            authorization: `Bearer ${localStorage.getItem("healthy-mind")}`,
           },
-          body: JSON.stringify(services)
+          body: JSON.stringify(services),
         })
-        .then(res => res.json())
-        .then(data => {
-          console.log(data);
-          toast.success('Successfully Add a Service');
-          form.reset();
-        })
-        .catch(err => console.log(err))
+          .then((res) => res.json())
+          .then((data) => {
+            console.log(data);
+            if (data.message) {
+              return toast.warning(data.message);
+            }
+            toast.success("Successfully Add a Service");
+            form.reset();
+          })
+          .catch((err) => console.log(err));
         
     }
     return (

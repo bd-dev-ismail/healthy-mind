@@ -1,20 +1,32 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
+import { toast } from 'react-toastify';
+
 import { AuthContext } from '../../context/AuthProvider';
 import MySingleReview from './MySingleReview';
 
 const MyReview = () => {
-    const {user} = useContext(AuthContext);
+    const { user, logOutUser } = useContext(AuthContext);
     const [review, setReview] = useState([]);
     const [refresh, setRefresh] = useState(false);
     useEffect(()=>{
-        fetch(`http://localhost:5000/myreview?email=${user.email}`)
-        .then(res => res.json())
+        fetch(`http://localhost:5000/myreview?email=${user?.email}`, {
+          headers: {
+            authorization: `Bearer ${localStorage.getItem('healthy-mind')}`
+          }
+        })
+        .then(res => {
+          if(res.status === 401 || res.status === 403){
+            logOutUser()
+            .then(()=>{toast.warning('Please Login Again!')})
+          }
+          return res.json();
+        })
         .then(data => {
           setReview(data);
           setRefresh(!refresh);
         })
-    },[user.email, refresh ] );
+    },[user?.email, refresh, logOutUser ] );
     
     return (
       <div className="container mx-auto min-h-screen">
