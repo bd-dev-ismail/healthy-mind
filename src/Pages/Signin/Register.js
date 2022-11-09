@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { Helmet } from 'react-helmet';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Link,  useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import registerimg from '../../assets/register.svg'
 import { AuthContext } from '../../context/AuthProvider';
@@ -16,8 +16,8 @@ const Register = () => {
    
    
     const navigate = useNavigate('/');
-     const location = useLocation();
-     const from = location.state?.from?.pathname || "/";
+    
+     
     const handalRegister = (e)=> {
       e.preventDefault();
       const form = e.target;
@@ -48,7 +48,7 @@ const Register = () => {
             // console.log(data.token);
             localStorage.setItem("healthy-mind", data?.token);
              form.reset();
-             navigate(from, { replace: true });
+             navigate("/");
           });
        
         updateData(profile)
