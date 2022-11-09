@@ -15,7 +15,7 @@ const Register = () => {
     } = useContext(AuthContext);
    
    
-    const navigate = useNavigate('/');
+    const navigate = useNavigate();
     
      
     const handalRegister = (e)=> {
@@ -46,14 +46,17 @@ const Register = () => {
           .then((res) => res.json())
           .then((data) => {
             // console.log(data.token);
+           
             localStorage.setItem("healthy-mind", data?.token);
              form.reset();
+             
              navigate("/");
+              window.location.reload();
           });
        
         updateData(profile)
         .then(()=>{
-          window.location.reload();
+          
         })
         .catch(err=>console.log(err))
         
