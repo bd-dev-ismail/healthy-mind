@@ -1,11 +1,11 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Link,  useNavigate } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import registerimg from '../../assets/register.svg'
 import { AuthContext } from '../../context/AuthProvider';
 const Register = () => {
-  
+    const [loading, setLoading] = useState(false);
     const {
       registerUser,
 
@@ -26,50 +26,54 @@ const Register = () => {
       const email = form.email.value;
       const password = form.password.value;
       // console.log(name, photoURL, email, password);
+      setLoading(true);
       const profile = {
         displayName: name,
         photoURL: photoURL,
       };
       registerUser(email, password)
-      .then(result=> {
-        const user = result.user;
-        const currentUser = {
-          email: user?.email,
-        };
-        fetch("https://healthy-mind-server.vercel.app/jwt", {
-          method: "POST",
-          headers: {
-            "content-type": "application/json",
-          },
-          body: JSON.stringify(currentUser),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            // console.log(data.token);
-           
-            localStorage.setItem("healthy-mind", data?.token);
-             form.reset();
-             
-             navigate("/");
+        .then((result) => {
+          const user = result.user;
+          const currentUser = {
+            email: user?.email,
+          };
+          fetch("https://healthy-mind-server.vercel.app/jwt", {
+            method: "POST",
+            headers: {
+              "content-type": "application/json",
+            },
+            body: JSON.stringify(currentUser),
+          })
+            .then((res) => res.json())
+            .then((data) => {
+              // console.log(data.token);
+              setLoading(false);
+              localStorage.setItem("healthy-mind", data?.token);
+              form.reset();
+
+              navigate("/");
               window.location.reload();
-          });
-       
-        updateData(profile)
-        .then(()=>{
-          
+            });
+
+          updateData(profile)
+            .then(() => {})
+            .catch((err) => {
+              console.log(err);
+              setLoading(false);
+            });
+
+          toast.success("Successfully Register");
         })
-        .catch(err=>console.log(err))
-        
-        
-        toast.success('Successfully Register');
-        
-      })
-      .catch(err => toast.error(err.message))
+        .catch((err) => {
+          toast.error(err.message);
+          setLoading(false);
+        });
     };
 
    
     //login with google
     const handalGoogle = ()=> {
+      setLoading(true);
       withGoogle()
       .then(result=> {
         const user = result.user;
@@ -86,6 +90,7 @@ const Register = () => {
           .then((res) => res.json())
           .then((data) => {
             // console.log(data.token);
+            setLoading(false)
             localStorage.setItem("healthy-mind", data?.token);
            navigate("/");
           
@@ -93,7 +98,10 @@ const Register = () => {
           });
         
       })
-      .catch(err=> toast.error(err.message));
+      .catch(err=> {
+        toast.error(err.message);;
+        setLoading(false);
+      });
     }
     useEffect(() => {
       window.scrollTo({ top: 0, left: 0, behavior: "smooth" });
@@ -103,7 +111,10 @@ const Register = () => {
         <Helmet>
           <title>Register -Healthy Mind</title>
         </Helmet>
-        <div className="hero min-h-screen bg-base-200">
+        {loading && (
+          <div className="w-16 container mx-auto flex justify-center items-center h-16 border-4 border-dashed rounded-full animate-spin border-secondary"></div>
+        )}
+        <div className="hero bg-base-200">
           <div className="hero-content flex-col-reverse lg:flex-row-reverse ">
             <div className="text-center lg:text-left lg:mr-20">
               <img src={registerimg} alt="" />
