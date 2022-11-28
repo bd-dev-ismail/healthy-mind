@@ -6,7 +6,7 @@ import SingleService from './SingleService';
 const Services = () => {
     const [services, setServices] = useState([]);
     const [loading, setLoading] = useState(false);
-    // console.log(loading);
+    // console.log(loading);//small changes
     useEffect(()=> {
       setLoading(true)
         fetch("https://healthy-mind-server.vercel.app/services")
