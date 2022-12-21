@@ -5,6 +5,7 @@ import CallToAction from './CallToAction';
 import Care from './Care';
 import Gallery from './Gallery';
 import Hero from './Hero';
+import ServiceCount from './ServiceCount/ServiceCount';
 import ServicesHome from './ServicesHome';
 
 const Home = () => {
@@ -20,8 +21,9 @@ const Home = () => {
         <ServicesHome />
         <Care />
         <CallToAction />
+
         <Gallery />
-      
+      <ServiceCount/>
       </div>
     );
 };
